@@ -31,54 +31,50 @@ set_background("Nikolis.png")
 # Κενό για να "κατέβουν" οι χάρτες πιο κάτω από τις υπογραφές
 st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
 
+# col1, col2 = st.columns(2)
+# with col1:
+#     st.markdown("⇢ Εκκλησία: [Άγιος Γεράσιμος Ιλισίων](https://share.google/Cs77mCBaMYn2HUTXV)")
+# with col2:
+#     st.markdown("⇢ Κέντρο: [Pegasus Event Venue](https://share.google/qKdLDqAhLqE8AKYy7)")
+
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
+st.markdown("</div>", unsafe_allow_html=True)
+
+texts = {
+    "Ελληνικά": {
+        "church": "⇢ [Εκκλησία](https://share.google/Cs77mCBaMYn2HUTXV)",
+        "venue": "⇢ [Κέντρο](https://share.google/qKdLDqAhLqE8AKYy7)",
+        "select_name": "Διάλεξε το όνομά σου",
+        "adults": "Ενήλικες;",
+        "kids_0_3": "Παιδιά 0-3 ετών:",
+        "kids_3_plus": "Παιδιά άνω των 3:",
+        "upload_photos": "📸 Θες να ανεβάσεις φωτογραφίες από τον γάμο μας;",
+        "submit": "✅ Υποβολή",
+        "success": "✅ Η υποβολή έγινε με επιτυχία! Ευχαριστούμε πολύ! 💖"
+    },
+    "English": {
+        "church": "⇢ Church: [View on Map](https://share.google/Cs77mCBaMYn2HUTXV)",
+        "venue": "⇢ Venue: [View on Map](https://share.google/qKdLDqAhLqE8AKYy7)",
+        "select_name": "Choose your name",
+        "adults": "Adults",
+        "kids_0_3": "Children aged 0-3:",
+        "kids_3_plus": "Children over 3:",
+        "upload_photos": "📸 Want to upload photos from our wedding?",
+        "submit": "✅ Submit",
+        "success": "✅ Submitted successfully! Thank you so much! 💖"
+    }
+}
+
+guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("⇢ Εκκλησία: [Άγιος Γεράσιμος Ιλισίων](https://share.google/Cs77mCBaMYn2HUTXV)")
+    st.markdown(texts[lang]["church"])
 with col2:
-    st.markdown("⇢ Κέντρο: [Pegasus Event Venue](https://share.google/qKdLDqAhLqE8AKYy7)")
+    st.markdown(texts[lang]["venue"])
 
-st.markdown("---")
-
-# -- Λίστα Καλεσμένων
-guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
-name = st.selectbox("Διάλεξε το όνομά σου", guest_list)
-
-# -- Αριθμός Ατόμων
-adults = st.number_input("Πόσοι ενήλικες θα έρθουν (μαζί με εσένα);", min_value=1, max_value=10, value=1)
-kids_0_3 = st.number_input("Παιδιά 0-3 ετών:", min_value=0, max_value=10, value=0)
-kids_3_plus = st.number_input("Παιδιά άνω των 3:", min_value=0, max_value=10, value=0)
-
-st.markdown("---")
-
-# -- Φωτογραφίες
-st.markdown("📸 Θες να ανεβάσεις φωτογραφίες από τον γάμο μας;")
-st.markdown("➡️ [Ανέβασε στο Google Drive εδώ](https://drive.google.com/drive/folder/xxx)")
-
-uploaded_files = st.file_uploader("Ή ανέβασε εδώ (προαιρετικά):", accept_multiple_files=True)
-
-# -- Υποβολή
-if st.button("✅ Υποβολή"):
-    # Αποθήκευση στοιχείων σε CSV
-    submission = {
-        "Όνομα": name,
-        "Ενήλικες": adults,
-        "Παιδιά 0-3": kids_0_3,
-        "Παιδιά 3+": kids_3_plus,
-        "Ημερομηνία": datetime.now().strftime("%Y-%m-%d %H:%M")
-    }
-
-    df = pd.DataFrame([submission])
-    if not os.path.exists("responses.csv"):
-        df.to_csv("responses.csv", index=False)
-    else:
-        df.to_csv("responses.csv", mode='a', header=False, index=False)
-
-    # Αποθήκευση φωτογραφιών
-    if uploaded_files:
-        os.makedirs("uploaded_photos", exist_ok=True)
-        for file in uploaded_files:
-            with open(os.path.join("uploaded_photos", file.name), "wb") as f:
-                f.write(file.getbuffer())
-
-    st.success("✅ Η υποβολή έγινε με επιτυχία! Ευχαριστούμε πολύ! 💖")
+name = st.selectbox(texts[lang]["select_name"], guest_list)
+adults = st.number_input(texts[lang]["adults"], min_value=1, max_value=10, value=1)
+kids_0_3 = st.number_input(texts[lang]["kids_0_3"], min_value=0, max_value=10, value=0)
+kids_3_plus = st.number_input(texts[lang]["kids_3_plus"], min_value=0, max_value=10, value=0)
 
