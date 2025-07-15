@@ -33,9 +33,9 @@ st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("⇢ Εκκλησία: [Δες στον Χάρτη](https://www.google.com/maps)")
+    st.markdown("⇢ Εκκλησία: [Άγιος Γεράσιμος Ιλισίων](https://share.google/Cs77mCBaMYn2HUTXV)")
 with col2:
-    st.markdown("⇢ Κέντρο: [Δες στον Χάρτη](https://www.google.com/maps)")
+    st.markdown("⇢ Κέντρο: [Pegasus Event Venue](https://share.google/qKdLDqAhLqE8AKYy7)")
 
 st.markdown("---")
 
