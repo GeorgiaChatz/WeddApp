@@ -128,7 +128,7 @@ def set_background(png_file):
     """
     st.markdown(css, unsafe_allow_html=True)
 
-set_background("Nikolis.png")
+set_background("tzo.png")
 
 # Add spacing
 st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
