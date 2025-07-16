@@ -94,7 +94,7 @@ def set_background(png_file):
         background-attachment: fixed;
     }}
     a {{
-        color: #ff69b4 !important;  /* Custom pink color */
+        color: #586c82 !important;  /* Custom pink color */
         font-weight: bold;
         font-size: 18px;
         text-decoration: none;
