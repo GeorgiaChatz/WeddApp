@@ -129,7 +129,28 @@ def set_background(png_file):
     st.markdown(css, unsafe_allow_html=True)
 
 set_background("tzo.png")
+# Custom CSS for radio button color and shape
+st.markdown("""
+    <style>
+    /* Make radio buttons square */
+    input[type="radio"] {
+        border-radius: 0 !important;
+    }
 
+    /* Change selected radio button color */
+    div[data-baseweb="radio"] label span {
+        background-color: #586c82 !important;  /* your preferred color */
+        border: 2px solid #586c82 !important;
+    }
+
+    /* Label text color and weight */
+    div[data-baseweb="radio"] label p {
+        color: white !important;
+        font-weight: bold;
+    }
+    }
+    </style>
+""", unsafe_allow_html=True)
 # Add spacing
 st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
 
