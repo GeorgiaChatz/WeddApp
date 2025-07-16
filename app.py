@@ -288,7 +288,7 @@ GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
 REPO_OWNER = "GeorgiaChatz"
 REPO_NAME = "WeddApp"
 
-background_color = "#f6f2e7"  # άλλαξέ το αν χρειάζεται
+background_color = "#faf7f2"  # άλλαξέ το αν χρειάζεται
 
 st.markdown(f"""
     <style>
