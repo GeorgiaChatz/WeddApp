@@ -401,11 +401,11 @@ lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Leave some space between language and links
-st.markdown("<div style='height:30px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height:15px;'></div>", unsafe_allow_html=True)
 
 # ✅ Church / Venue links aligned with form
 st.markdown(f"""
-<div style='max-width: 400px; margin: 0 auto; text-align: center; margin-bottom: 30px;'>
+<div style='max-width: 400px; margin: 0 auto; text-align: center; margin-left: -10 px; margin-bottom: 30px;'>
     {texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}
 </div>
 """, unsafe_allow_html=True)
