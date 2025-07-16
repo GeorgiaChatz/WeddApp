@@ -391,21 +391,23 @@ texts = {
 
 # Show links centered
 # st.markdown(f"<div style='text-align: center;'>{texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}</div>", unsafe_allow_html=True)
+st.markdown("<div style='height:180px;'></div>", unsafe_allow_html=True)
+
+# ✅ Language toggle aligned with form width
 st.markdown("""
-<div style='text-align: center; margin-top: 40px; margin-bottom: 10px;'>
+<div style='max-width: 400px; margin: 0 auto; text-align: center;'>
 """, unsafe_allow_html=True)
 lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
 st.markdown("</div>", unsafe_allow_html=True)
 
-# Εκκλησία & Κέντρο: πιο αριστερά ώστε να ευθυγραμμίζεται με τη φόρμα
+# Leave some space between language and links
+st.markdown("<div style='height:30px;'></div>", unsafe_allow_html=True)
+
+# ✅ Church / Venue links aligned with form
 st.markdown(f"""
-    <div style='
-        text-align: center;
-        margin-left: -20px;
-        margin-bottom: 30px;
-    '>
-        {texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}
-    </div>
+<div style='max-width: 400px; margin: 0 auto; text-align: center; margin-bottom: 30px;'>
+    {texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}
+</div>
 """, unsafe_allow_html=True)
 # Form
 guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
