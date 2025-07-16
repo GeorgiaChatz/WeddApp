@@ -77,7 +77,32 @@ import pandas as pd
 import os
 from datetime import datetime
 import base64
+import requests
 
+def upload_to_github(file_content, file_path, commit_message, token, repo_owner, repo_name):
+    """Upload a file to a GitHub repository."""
+    api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+    response = requests.get(api_url, headers={"Authorization": f"token {token}"})
+    sha = response.json()["sha"] if response.status_code == 200 else None
+
+    encoded_content = base64.b64encode(file_content).decode("utf-8")
+
+    payload = {
+        "message": commit_message,
+        "content": encoded_content,
+        "sha": sha,
+    }
+
+    upload_response = requests.put(api_url, json=payload, headers={"Authorization": f"token {token}"})
+    if upload_response.status_code in [200, 201]:
+        return upload_response.json()["content"]["html_url"]
+    else:
+        st.error(f"Error uploading file to GitHub: {upload_response.json()}")
+        return None
+
+GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
+REPO_OWNER = "GeorgiaChatz"
+REPO_NAME = "WeddApp"
 # Background image function
 def set_background(png_file):
     with open(png_file, "rb") as f:
@@ -176,3 +201,17 @@ with st.form("attendance_form"):
             combined = new_data
         combined.to_csv(filename, index=False)
         st.success(texts[lang]["success"])
+
+        # Upload to GitHub
+        with open(filename, "rb") as f:
+            file_bytes = f.read()
+
+        upload_url = upload_to_github(
+            file_content=file_bytes,
+            file_path="wedding_table/guest_responses.csv",  # path in the GitHub repo
+            commit_message="Update guest responses",
+            token=GITHUB_TOKEN,
+            repo_owner=REPO_OWNER,
+            repo_name=REPO_NAME
+        )
+
