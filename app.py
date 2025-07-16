@@ -354,7 +354,7 @@ def set_background(png_file):
 set_background("tzo.png")
 
 # Language toggle
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+st.markdown("<div style='text-align: center; margin-top: 2em;'>", unsafe_allow_html=True)
 lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
 st.markdown("</div>", unsafe_allow_html=True)
 
