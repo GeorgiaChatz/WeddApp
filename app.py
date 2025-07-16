@@ -200,7 +200,25 @@ with st.form("attendance_form"):
         else:
             combined = new_data
         combined.to_csv(filename, index=False)
-        st.success(texts[lang]["success"])
+        custom_message = texts[lang]["success"]
+
+        st.markdown(
+            f"""
+            <div style='
+                background-color: #f9e6ff;
+                padding: 1em;
+                border-left: 5px solid #586c82;
+                border-radius: 5px;
+                color: #586c82;
+                font-weight: bold;
+                font-size: 16px;
+                margin-top: 1em;
+            '>
+                {custom_message}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         # Upload to GitHub
         with open(filename, "rb") as f:
