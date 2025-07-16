@@ -353,13 +353,6 @@ def set_background(png_file):
 
 set_background("tzo.png")
 
-# Language toggle
-st.markdown("<div style='text-align: center; margin-top: 2em;'>", unsafe_allow_html=True)
-lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
-st.markdown("</div>", unsafe_allow_html=True)
-
-# Add space
-st.markdown("<div style='height:80px;'></div>", unsafe_allow_html=True)
 
 
 # Load leaf image as base64
@@ -397,8 +390,23 @@ texts = {
 }
 
 # Show links centered
-st.markdown(f"<div style='text-align: center;'>{texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}</div>", unsafe_allow_html=True)
+# st.markdown(f"<div style='text-align: center;'>{texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}</div>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align: center; margin-top: 40px; margin-bottom: 10px;'>
+""", unsafe_allow_html=True)
+lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
+st.markdown("</div>", unsafe_allow_html=True)
 
+# Εκκλησία & Κέντρο: πιο αριστερά ώστε να ευθυγραμμίζεται με τη φόρμα
+st.markdown(f"""
+    <div style='
+        text-align: center;
+        margin-left: -20px;
+        margin-bottom: 30px;
+    '>
+        {texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}
+    </div>
+""", unsafe_allow_html=True)
 # Form
 guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
 
