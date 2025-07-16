@@ -359,7 +359,8 @@ lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Add space
-st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height:80px;'></div>", unsafe_allow_html=True)
+
 
 # Load leaf image as base64
 def get_base64_image(image_path):
