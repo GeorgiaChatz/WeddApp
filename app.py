@@ -369,9 +369,9 @@ texts = {
         "church": f'{leaf_img}<a href="https://share.google/Cs77mCBaMYn2HUTXV" target="_blank">Εκκλησία</a>',
         "venue": f'{leaf_img}<a href="https://share.google/qKdLDqAhLqE8AKYy7" target="_blank">Κέντρο</a>',
         "select_name": "Διάλεξε το όνομά σου",
-        "adults": "Ενήλικες;",
+        "adults": "Ενήλικες:",
         "kids_0_3": "Παιδιά 0-3 ετών:",
-        "kids_3_plus": "Παιδιά άνω των 3:",
+        "kids_3_plus": "Παιδιά 3-10 ετών:",
         "upload_photos": "📸 Θες να ανεβάσεις φωτογραφίες από τον γάμο μας;",
         "submit": "Υποβολή",
         "success": "Ευχαριστούμε πολύ, ανυπομονούμε!!"
@@ -380,9 +380,9 @@ texts = {
         "church": f'{leaf_img}<a href="https://share.google/GFpw6TkvB1dCoJOIP" target="_blank">Church</a>',
         "venue": f'{leaf_img}<a href="https://share.google/h0IKsQ0Srz0cUvfJy" target="_blank">Venue</a>',
         "select_name": "Choose your name",
-        "adults": "Adults",
+        "adults": "Adults:",
         "kids_0_3": "Children aged 0-3:",
-        "kids_3_plus": "Children over 3:",
+        "kids_3_plus": "Children aged 3-10:",
         "upload_photos": "📸 Want to upload photos from our wedding?",
         "submit": "Submit",
         "success": "Can't wait for this day!!"
