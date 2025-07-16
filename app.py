@@ -205,7 +205,7 @@ with st.form("attendance_form"):
         st.markdown(
             f"""
             <div style='
-                background-color: #f9e6ff;
+                background-color: #586c82;
                 padding: 1em;
                 border-left: 5px solid #586c82;
                 border-radius: 5px;
