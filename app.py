@@ -288,6 +288,22 @@ GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
 REPO_OWNER = "GeorgiaChatz"
 REPO_NAME = "WeddApp"
 
+background_color = "#f6f2e7"  # άλλαξέ το αν χρειάζεται
+
+st.markdown(f"""
+    <style>
+        /* Αλλάζει το background του header */
+        header[data-testid="stHeader"] {{
+            background-color: {background_color};
+        }}
+
+        /* Κρύβει το default κενό */
+        .block-container {{
+            padding-top: 1rem;
+        }}
+    </style>
+""", unsafe_allow_html=True)
+
 def upload_to_github(file_content, file_path, commit_message, token, repo_owner, repo_name):
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
     response = requests.get(api_url, headers={"Authorization": f"token {token}"})
