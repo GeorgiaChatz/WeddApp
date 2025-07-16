@@ -126,8 +126,8 @@ texts = {
         "success": "✅ Η υποβολή έγινε με επιτυχία! Ευχαριστούμε πολύ! 💖"
     },
     "English": {
-        "church": '<a href="https://share.google/Cs77mCBaMYn2HUTXV" target="_blank">⇢ Church: View on Map</a>',
-        "venue": '<a href="https://share.google/qKdLDqAhLqE8AKYy7" target="_blank">⇢ Venue: View on Map</a>',
+        "church": '<a href="https://share.google/GFpw6TkvB1dCoJOIP" target="_blank">⇢ Church: View on Map</a>',
+        "venue": '<a href="https://share.google/h0IKsQ0Srz0cUvfJy" target="_blank">⇢ Venue: View on Map</a>',
         "select_name": "Choose your name",
         "adults": "Adults",
         "kids_0_3": "Children aged 0-3:",
@@ -153,8 +153,13 @@ with st.form("attendance_form"):
     submitted = st.form_submit_button(texts[lang]["submit"])
 
     if submitted:
-        # Save to CSV
-        filename = "guest_responses.csv"
+        # Ensure the wedding_table directory exists
+        os.makedirs("wedding_table", exist_ok=True)
+
+        # Define the file path
+        filename = os.path.join("wedding_table", "guest_responses.csv")
+
+        # Create new row of data
         new_data = pd.DataFrame([{
             "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "Name": name,
@@ -163,11 +168,11 @@ with st.form("attendance_form"):
             "Kids_3_plus": kids_3_plus
         }])
 
+        # Save or append to CSV
         if os.path.exists(filename):
             existing = pd.read_csv(filename)
             combined = pd.concat([existing, new_data], ignore_index=True)
         else:
             combined = new_data
-
         combined.to_csv(filename, index=False)
         st.success(texts[lang]["success"])
