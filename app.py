@@ -122,8 +122,8 @@ texts = {
         "kids_0_3": "Παιδιά 0-3 ετών:",
         "kids_3_plus": "Παιδιά άνω των 3:",
         "upload_photos": "📸 Θες να ανεβάσεις φωτογραφίες από τον γάμο μας;",
-        "submit": "✅ Υποβολή",
-        "success": "✅ Η υποβολή έγινε με επιτυχία! Ευχαριστούμε πολύ! 💖"
+        "submit": "Υποβολή",
+        "success": "Ευχαριστούμε πολύ, ανυπομονούμε!!"
     },
     "English": {
         "church": '<a href="https://share.google/GFpw6TkvB1dCoJOIP" target="_blank">⇢ Church: View on Map</a>',
@@ -133,8 +133,8 @@ texts = {
         "kids_0_3": "Children aged 0-3:",
         "kids_3_plus": "Children over 3:",
         "upload_photos": "📸 Want to upload photos from our wedding?",
-        "submit": "✅ Submit",
-        "success": "✅ Submitted successfully! Thank you so much! 💖"
+        "submit": "Submit",
+        "success": "Can't wait for this day!!"
     }
 }
 
