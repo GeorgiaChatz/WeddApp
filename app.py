@@ -104,6 +104,29 @@ GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
 REPO_OWNER = "GeorgiaChatz"
 REPO_NAME = "WeddApp"
 # Background image function
+# def set_background(png_file):
+#     with open(png_file, "rb") as f:
+#         data = f.read()
+#         encoded = base64.b64encode(data).decode()
+#
+#     css = f"""
+#     <style>
+#     .stApp {{
+#         background-image: url("data:image/png;base64,{encoded}");
+#         background-size: cover;
+#         background-position: center;
+#         background-repeat: no-repeat;
+#         background-attachment: fixed;
+#     }}
+#     a {{
+#         color: #586c82 !important;  /* Custom pink color */
+#         font-weight: bold;
+#         font-size: 18px;
+#         text-decoration: none;
+#     }}
+#     </style>
+#     """
+#     st.markdown(css, unsafe_allow_html=True)
 def set_background(png_file):
     with open(png_file, "rb") as f:
         data = f.read()
@@ -118,51 +141,52 @@ def set_background(png_file):
         background-repeat: no-repeat;
         background-attachment: fixed;
     }}
+
     a {{
-        color: #586c82 !important;  /* Custom pink color */
+        color: #586c82 !important;
         font-weight: bold;
         font-size: 18px;
         text-decoration: none;
     }}
+
+    /* ✅ Custom checkbox styling */
+    input[type="checkbox"] + div[data-testid="stMarkdownContainer"] > label::before {{
+        border-color: #586c82;  /* outline color */
+    }}
+
+    input[type="checkbox"]:checked + div[data-testid="stMarkdownContainer"] > label::before {{
+        background-color: #586c82;  /* custom checked color */
+        border-color: #586c82;
+    }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
-
 set_background("tzo.png")
-# Custom CSS for radio button color and shape
-st.markdown("""
-    <style>
-    /* Make radio buttons square */
-    input[type="radio"] {
-        border-radius: 0 !important;
-    }
 
-    /* Change selected radio button color */
-    div[data-baseweb="radio"] label span {
-        background-color: #586c82 !important;  /* your preferred color */
-        border: 2px solid #586c82 !important;
-    }
-
-    /* Label text color and weight */
-    div[data-baseweb="radio"] label p {
-        color: white !important;
-        font-weight: bold;
-    }
-    }
-    </style>
-""", unsafe_allow_html=True)
 # Add spacing
 st.markdown("<div style='height:150px;'></div>", unsafe_allow_html=True)
 
 # Center language selection
+# st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+# lang = st.checkbox("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
+# st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
 lang = st.radio("🌐", ["Ελληνικά", "English"], horizontal=True, label_visibility="collapsed")
 st.markdown("</div>", unsafe_allow_html=True)
 
+
+guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
+def get_base64_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
+leaf_base64 = get_base64_image("leaf-removebg-preview.png")
+leaf_img = f'<img src="data:image/png;base64,{leaf_base64}" width="20" style="vertical-align: middle; margin-right: 4px;"/>'
+
 texts = {
     "Ελληνικά": {
-        "church": '<a href="https://share.google/Cs77mCBaMYn2HUTXV" target="_blank">⇢ Εκκλησία</a>',
-        "venue": '<a href="https://share.google/qKdLDqAhLqE8AKYy7" target="_blank">⇢ Κέντρο</a>',
+        "church": f'{leaf_img}<a href="https://share.google/Cs77mCBaMYn2HUTXV" target="_blank">⇢ Εκκλησία</a>',
+        "venue": f'{leaf_img}<a href="https://share.google/qKdLDqAhLqE8AKYy7" target="_blank">⇢ Κέντρο</a>',
         "select_name": "Διάλεξε το όνομά σου",
         "adults": "Ενήλικες;",
         "kids_0_3": "Παιδιά 0-3 ετών:",
@@ -183,8 +207,6 @@ texts = {
         "success": "Can't wait for this day!!"
     }
 }
-
-guest_list = ["Αλέξανδρος Παπαδόπουλος", "Μαρία Κωνσταντίνου", "Γιάννης & Ελένη", "Άλλο..."]
 
 # Centered links
 st.markdown(f"<div style='text-align: center;'>{texts[lang]['church']} &nbsp;&nbsp;&nbsp; {texts[lang]['venue']}</div>", unsafe_allow_html=True)
