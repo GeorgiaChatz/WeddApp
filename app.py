@@ -379,12 +379,7 @@ def get_base64_image(image_path):
 leaf_base64 = get_base64_image("leaf-removebg-preview.png")
 leaf_img = f'<img src="data:image/png;base64,{leaf_base64}" width="30" style="vertical-align: middle; margin-right: 6px;"/>'
 
-cocktail_options = ["Mojito", "Paloma", "Daiquiri", "Margarita", "Porn Star", "Mai Tai"]
-fav_cocktails = st.multiselect(
-    "🍸 Select your two favourite cocktails:",
-    cocktail_options,
-    max_selections=2
-)
+
 # Language-specific texts
 texts = {
     "Ελληνικά": {
@@ -394,7 +389,7 @@ texts = {
         "adults": "Ενήλικες:",
         "kids_0_3": "Παιδιά 0-3 ετών:",
         "kids_3_plus": "Παιδιά 3-10 ετών:",
-        "Αγαπημένα κοκτέιλ": ", ".join(fav_cocktails),
+        "cocktail_prompt": "🍸 Αγαπημένα κοκτέιλ (διάλεξε 2):",
         "submit": "Υποβολή",
         "success": "Ευχαριστούμε πολύ, ανυπομονούμε!!"
     },
@@ -405,7 +400,7 @@ texts = {
         "adults": "Adults:",
         "kids_0_3": "Children aged 0-3:",
         "kids_3_plus": "Children aged 3-10:",
-        "Favourite_Cocktails": ", ".join(fav_cocktails),
+        "cocktail_prompt": "🍸 Favourite cocktails (choose 2):",
         "submit": "Submit",
         "success": "Can't wait for this day!!"
     }
@@ -439,7 +434,12 @@ with st.form("attendance_form"):
     adults = st.number_input(texts[lang]["adults"], min_value=1, max_value=10, value=1)
     kids_0_3 = st.number_input(texts[lang]["kids_0_3"], min_value=0, max_value=10, value=0)
     kids_3_plus = st.number_input(texts[lang]["kids_3_plus"], min_value=0, max_value=10, value=0)
-
+    cocktail_options = ["Mojito", "Paloma", "Daiquiri", "Margarita", "Porn Star", "Mai Tai"]
+    fav_cocktails = st.multiselect(
+        texts[lang]["cocktail_prompt"],
+        cocktail_options,
+        max_selections=2
+    )
 
     submitted = st.form_submit_button(texts[lang]["submit"])
 
@@ -452,7 +452,8 @@ with st.form("attendance_form"):
             "Name": name,
             "Adults": adults,
             "Kids_0_3": kids_0_3,
-            "Kids_3_plus": kids_3_plus
+            "Kids_3_plus": kids_3_plus,
+            "Favourite_Cocktails": ", ".join(fav_cocktails)
         }])
 
         if os.path.exists(filename):
