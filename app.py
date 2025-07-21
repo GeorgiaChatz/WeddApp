@@ -304,6 +304,25 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <style>
+    /* Style selected items in multiselect to match other inputs */
+    .stMultiSelect div[data-baseweb="tag"] {
+        background-color: #e0e0e0 !important;  /* Light gray like input background */
+        color: black !important;
+        border-radius: 6px !important;
+        font-weight: 500;
+    }
+
+    .stMultiSelect div[data-baseweb="tag"] > div {
+        color: black !important;
+    }
+
+    .stMultiSelect div[data-baseweb="tag"] svg {
+        fill: black !important;  /* color of the 'x' icon */
+    }
+    </style>
+""", unsafe_allow_html=True)
 def upload_to_github(file_content, file_path, commit_message, token, repo_owner, repo_name):
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
     response = requests.get(api_url, headers={"Authorization": f"token {token}"})
